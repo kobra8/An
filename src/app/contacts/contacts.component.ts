@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ContactsService } from '../contacts.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+//import { MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-contacts',
@@ -13,7 +13,7 @@ export class ContactsComponent implements OnInit {
 
   constructor(
     private _contactsService: ContactsService,
-    public dialog: MatDialog
+   // public dialog: MatDialog
   ) { 
     this.contacts = _contactsService.getContacts();
   }
@@ -22,12 +22,12 @@ export class ContactsComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(AddContactDialog);
-    dialogRef.afterClosed().subscribe(x => {
-      if(x) {
-        this.contacts.push(x);
-      }
-    })
+    // let dialogRef = this.dialog.open(AddContactDialog);
+    // dialogRef.afterClosed().subscribe(x => {
+    //   if(x) {
+    //     this.contacts.push(x);
+    //   }
+    // })
   }
 
 }
@@ -35,6 +35,7 @@ export class ContactsComponent implements OnInit {
 @Component({
   selector: 'add-contact-dialog',
   template: `
+  <!--
   <h1 mat-dialog-title>Add contact</h1>
   <mat-form-field>
     <input matInput #contactName placeholder="Contact name">
@@ -51,13 +52,14 @@ export class ContactsComponent implements OnInit {
   <button mat-raised-button (click)="dialogRef.close()">
   Close
   </button>
+  -->
   `
 })
 
 export class AddContactDialog {
 
   constructor(
-    public dialogRef: MatDialogRef<AddContactDialog>,@Inject(MAT_DIALOG_DATA) public data: any
+   // public dialogRef: MatDialogRef<AddContactDialog>
   ) { }
 
   save() {
